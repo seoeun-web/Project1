@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- GOOGLE FONT LINK -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- CSS LINK -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet" />
+    <!-- JavaScript LINK -->
+    <link rel="stylesheet" href="./css/project.css">
+    <script defer src="./js/project.js"></script>
+</head>
+<body>
+    <div class="page">
+        <div class="page__container">
+            <!-- 검색창 ui -->
+             <div class="page__container__searchBar">
+                <input type="text" class="page__container__searchBar" 
+                placeholder="검색어를 입력하세요.">
+                <button class="button">
+                    <img src="./assets/icon-search.svg" alt="">
+                </button>
+             </div>
+             <div class="page__container__dataBox">
+                <swiper-container class="mySwiper" navigation="true"></swiper-container>
+             </div>
+             <footer class="page__container__footer">
+                <button class="page__container__footer__button">추가하기</button>
+             </footer>
+        </div>
+    </div>    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"
+    integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+</html>

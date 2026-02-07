@@ -1,0 +1,168 @@
+.page{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: #ffffff;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 659px;
+    height: 780px;
+
+    border: 20px;
+}
+
+/* ------------------------------------------------------- */
+
+/* Body */
+.container__body{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 40px;
+
+    background-color: whitesmoke;
+    border-radius: 20px 20px 0 0;
+    overflow: scroll;
+}
+
+.container__body__list{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: calc(100% - 35px);
+
+    padding: 16px;
+    gap: 8px;
+
+    border-bottom: 1px solid #cacaca;
+}
+
+.container__body__noData{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc(100% - 32px);
+    height: 100%;
+
+    padding: 16px;
+}
+
+.title{
+    font-weight: 500; /*굵기*/
+}
+.place{
+    font-weight: 500;
+}
+.content{
+    font-weight: 500;
+}
+
+.btn-update{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 8px;
+
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    color: #ffffff;
+    font-size: 30px;
+    border-radius: 20px;
+    background: linear-gradient(45deg,rgb(224,63,140) 0%, rgb(225,85,112) 100%);
+}
+
+.container__body__inputBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    
+    gap: 50px;
+    margin-top: 16px;
+}
+
+.label{
+    width: 60px;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.input{
+    flex: 1;
+    height: 35px;
+
+    padding: 10px 12px;
+
+    border-radius: 6px;
+    border: 1px solid #cacaca;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+/* Footer */
+.container__footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 80px;
+
+    padding: 16px;
+    gap: 16px;
+
+    border-top: 1px solid #cacaca;
+    border-radius: 0 0 8px 8px;
+    background-color: #ffffff;
+    border: none;
+}
+
+.container__footer__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30%;
+    height: 50px;
+
+    outline: none;
+    border: none !important;
+    cursor: pointer;
+
+    color: #ffffff;
+    font-size: 16px;
+
+    border-radius: 8px;
+    background-image: linear-gradient(45deg,rgb(224,63,140) 0%, rgb(225,85,112) 100%);
+    border: none;
+}
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/project.css">
+    <link rel="stylesheet" href="./css/create2.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script defer src="./js/create.js" defer></script>
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <header class="container__header">
+                <button class="container__header__button">
+                    <span class="material-symbols-outlined">
+                        arrow_back
+                    </span>
+                </button>
+            </header>
+            <div class="container__body">
+                <div class="container__body__info">아래 입력란을 기입하세요.</div>
+                <div class="container__body__inputBox">
+                    <span class="container__body__title">제목</span>
+                    <input type="text" class="input input-title" placeholder="제목을 입력해주세요.">
+                </div>
+                <div class="container__body__inputBox">
+                    <span class="label">사진 선택</span>
+                    <input type="file" class="input-file" accept="image/*">
+                </div>
+                <div class="image-preview" style="margin-top: 10px;">
+                    <img id="preview" src="" alt="미리보기" style="width: 100px; display: none;">
+                </div>
+                <div class="container__body">
+                    <div class="container__body__inputBox">
+                        <span class="label">Where?</span>
+                        <input type="text" class="input input-place" placeholder="위치를 입력해주세요.">
+                    </div>
+                    <div class="container__body__inputBox">
+                        <span class="label">Content</span>
+                        <input type="text" class="input input-content" placeholder="내용을 입력해주세요.">
+                    </div>
+                </div>
+            </div>
+            <footer class="container__footer">
+                <button class="container__footer__button">등록</button>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

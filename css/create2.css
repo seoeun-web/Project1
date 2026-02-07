@@ -1,0 +1,137 @@
+/* 배경 및 레이아웃 설정 */
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    max-width: 340px; 
+    
+    background-color: #ffffff;
+    border-radius: 30px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* 자식 요소가 삐져나오지 않도록*/
+    box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* header */
+.container__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+}
+
+.container__header__button {
+    position: absolute;
+    left: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    color: #333;
+    font-size: 26px;
+}
+
+/* ======================================================== */
+/* body */
+.container__body {
+    padding: 0 25px 20px 25px; 
+    flex-direction: column;
+    gap: 18px;
+}
+
+.container__body__info {
+    font-size: 20px;
+    font-weight: 800;
+    color: #222;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.container__body__inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    margin-left: 4px;
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    border: 1.5px solid #f0f0f0;
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: #fafafa; 
+    box-sizing: border-box;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #e13f8c;
+    background-color: #fff;
+}
+
+.image-preview {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 가로세로 비율 고정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fdfdfd;
+    border-radius: 12px;
+    border: 1px dashed #ddd; /* 테두리두께 테두리모양(점선) 색 */
+    overflow: hidden;
+}
+
+#preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율에 맞춰 꽉 채움 */
+}
+
+/* ======================================================== */
+/* footer */
+
+.container__footer {
+    padding: 10px 25px 30px 25px;
+    background-color: #ffffff;
+}
+
+.container__footer__button {
+    width: 100%;
+    height: 58px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(45deg, #e13f8c, #ff5570);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(225, 63, 140, 0.3); 
+}
