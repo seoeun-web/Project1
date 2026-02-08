@@ -64,14 +64,60 @@ console.log("버튼태그:", buttonTag);
 
 let posts=[]
 
+// 이미지 압축
+const compressImgAndUploadFile=(fild)=>{
+    return new Promise((resolve,reject)=>{
+        const reader=new FileReader();
+        reader.readAsDataURL(file)
+        reader.onload=()=>{
+            // dateUrl을 이용해서 image 객체 생성
+            const img=new Image()
+            img.src=reader.result
+            image.onload=()=>{
+                    // canva를 이용해서 이미지 압축
+                    const canvas=documents.createElement("canvas")
+                    
+                    // 이미지의 최대 크기 제한
+                    const MAX_HEIGHT=1024;
+                    const MAX_WIDTH=1024;
+
+                    // 비율 계산
+                    let ratio=Math.min(MAX_WIDTH/image.width,MAX_HEIGHT/image.height,1);
+
+                    const newWidth=image.width*ratio
+                    const newHeight=image.height*ratio
+
+                    canvas.width=newWidth
+                    canvas.height=newHeight
+
+                    const canvasContext=canvas.getContext("2d")
+                    if(!canvasContext){
+                        throw new Error("Cannot get canvas context")
+                    }
+
+                    canvasContext.drawImage(image,0,0,newWidth,newHeight)
+
+                    const compressedDataUrl=canvas.toDataUrl("image/webp",0.7)
+                    resolve(compressedDataUrl);
+            }
+            img.onerror=reject
+        }
+        reader.onerror=reject
+    })
+}
+
+
 buttonTag.addEventListener(`click`, () => {
     if (title === "" || place === "" || content === "" || selectedImg === "") {
         return window.alert("모든 빈칸을 채워주세요!");
     }
 
     try{
+        // 압축 실행
+        const compressedImg=await compressImage(selectedImgFile);
+
         const addedPosts = JSON.parse(localStorage.getItem('posts')) || [];
-        const post = { title, image: selectedImg, place, content, created_at: new Date().toISOString() };
+        const post = { title, image: compressedImg, place, content, created_at: new Date().toISOString() };
 
         const posts = [...addedPosts, post];    
         localStorage.setItem("posts", JSON.stringify(posts));
