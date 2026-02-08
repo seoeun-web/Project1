@@ -66,8 +66,6 @@ console.log("내용태그:", contentTag);
 console.log("버튼태그:", buttonTag);
 
 //-----------------------------------------------------------------------------------------
-localStorage.clear();
-
 // 이미지 압축
 const compressImage = (file) => {
     return new Promise((resolve, reject) => {
