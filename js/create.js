@@ -13,7 +13,7 @@ let selectedImgFile=null;
 let selectedImg=""
 
 fileTag.addEventListener("change",(event)=>{
-    const file=event.target.files[0] || "image/default.jpg" // 선택한 파일 가져오기
+    const file=event.target.files[0] // 선택한 파일 가져오기
 
     if(file){
         // 파일 전체를 전역변수로 저장
@@ -28,6 +28,7 @@ fileTag.addEventListener("change",(event)=>{
         reader.readAsDataURL(file)
     }
     else{
+        selectedImgFile=null;
         selectedImg=""
         previewTag.style.display="none"
         return;
@@ -65,6 +66,8 @@ console.log("내용태그:", contentTag);
 console.log("버튼태그:", buttonTag);
 
 //-----------------------------------------------------------------------------------------
+localStorage.clear();
+
 // 이미지 압축
 const compressImage = (file) => {
     return new Promise((resolve, reject) => {
@@ -75,8 +78,8 @@ const compressImage = (file) => {
             img.src = reader.result;
             img.onload = () => {
                 const canvas = document.createElement("canvas");
-                const MAX_WIDTH = 1024;
-                const MAX_HEIGHT = 1024;
+                const MAX_WIDTH = 600;
+                const MAX_HEIGHT = 600;
 
                 let ratio = Math.min(MAX_WIDTH / img.width, MAX_HEIGHT / img.height, 1);
                 const newWidth = img.width * ratio;
@@ -90,7 +93,7 @@ const compressImage = (file) => {
 
                 // localStorage 저장을 위해 DataURL(Base64)로 반환
                 // 용량을 극단적으로 줄이려면 'image/jpeg'에 0.5~0.7 권장
-                const compressedDataUrl = canvas.toDataURL("image/webp", 0.7);
+                const compressedDataUrl = canvas.toDataURL("image/webp", 0.4);
                 resolve(compressedDataUrl);
             };
             img.onerror = reject;
@@ -123,8 +126,11 @@ buttonTag.addEventListener(`click`, async () => {
         window.alert("등록 완료!");
         location.href = "index.html";
     } catch (error) {
-        console.error("저장 실패:", error);
-        alert("이미지 처리에 실패했거나 저장 용량이 부족합니다.");
+        if(error.name==="QuotaExceededError"){
+            alert("저장공간이 가~득 찼습니다.")
+        }else{
+            alert("이미지 처리 중 오류 발생")
+        }
     }
 });
 
