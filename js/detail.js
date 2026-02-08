@@ -4,7 +4,7 @@ const selectedindex = localStorage.getItem("selectedId"); // JSON.parse 생략 �
 
 if (selectedindex === null || posts.length === 0 || !posts[selectedindex]) {
     window.alert("데이터를 불러올 수 없습니다.");
-    location.href = "project.html";
+    location.href = "index.html";
     throw new Error("No data found"); 
 }
 
