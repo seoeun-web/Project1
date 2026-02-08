@@ -9,14 +9,17 @@ if (backBtn) {
             });
 }
 
+let selectedImgFile=null;
 let selectedImg=""
 
 fileTag.addEventListener("change",(event)=>{
     const file=event.target.files[0] || "image/default.jpg" // 선택한 파일 가져오기
 
     if(file){
-        const reader=new FileReader()
+        // 파일 전체를 전역변수로 저장
+        selectedImgFile=file;
 
+        const reader=new FileReader()
         reader.onload=(e)=>{
             selectedImg=e.target.result // 결과물 저장
             previewTag.src=selectedImg //미리보기 이미지 변경
@@ -44,6 +47,7 @@ let title=''
 let place=''
 let content=''
 
+
 titleTag.addEventListener(`input`,(event)=>{
     title=event.target.value
 })
@@ -61,32 +65,69 @@ console.log("내용태그:", contentTag);
 console.log("버튼태그:", buttonTag);
 
 //-----------------------------------------------------------------------------------------
+// 이미지 압축
+const compressImage = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const img = new Image();
+            img.src = reader.result;
+            img.onload = () => {
+                const canvas = document.createElement("canvas");
+                const MAX_WIDTH = 1024;
+                const MAX_HEIGHT = 1024;
 
-buttonTag.addEventListener(`click`, () => {
-    if (title === "" || place === "" || content === "" || selectedImg === "") {
+                let ratio = Math.min(MAX_WIDTH / img.width, MAX_HEIGHT / img.height, 1);
+                const newWidth = img.width * ratio;
+                const newHeight = img.height * ratio;
+
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, newWidth, newHeight);
+
+                // localStorage 저장을 위해 DataURL(Base64)로 반환
+                // 용량을 극단적으로 줄이려면 'image/jpeg'에 0.5~0.7 권장
+                const compressedDataUrl = canvas.toDataURL("image/webp", 0.7);
+                resolve(compressedDataUrl);
+            };
+            img.onerror = reject;
+        };
+        reader.onerror = reject;
+    });
+};
+
+buttonTag.addEventListener(`click`, async () => {
+    if (title === "" || place === "" || content === "" || !selectedImgFile) { // selectedImgFile은 Input에서 받은 File 객체
         return window.alert("모든 빈칸을 채워주세요!");
     }
 
-    try{
-        const savedPosts = JSON.parse(localStorage.getItem('posts')) || [];
-        const newPost = {
-            title:title,
-            image: selectedImg,
-            place:place,
-            content:content,
-            created_at: new Date().toISOString()
-        };
-        // 합치기
-        savedPosts.push(newPost)
+    try {
+        // 압축 실행
+        const compressedImg = await compressImage(selectedImgFile);
 
-        localStorage.setItem("posts", JSON.stringify(savedPosts));
+        const addedPosts = JSON.parse(localStorage.getItem('posts')) || [];
+        const post = { 
+            title, 
+            image: compressedImg,
+            place, 
+            content, 
+            created_at: new Date().toISOString() 
+        };
+
+        const posts = [...addedPosts, post];    
+        localStorage.setItem("posts", JSON.stringify(posts));
+        
         window.alert("등록 완료!");
         location.href = "index.html";
-    }catch(error){
-        console.error("저장실패:",error)
-        alert("이미지 용량이 너무 커서 저장할 수 없습니다.")
+    } catch (error) {
+        console.error("저장 실패:", error);
+        alert("이미지 처리에 실패했거나 저장 용량이 부족합니다.");
     }
 });
+
 
 // 뒤로가기
 {
