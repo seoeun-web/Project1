@@ -76,7 +76,7 @@ buttonTag.addEventListener(`click`, () => {
         const posts = [...addedPosts, post];    
         localStorage.setItem("posts", JSON.stringify(posts));
         window.alert("등록 완료!");
-        location.href = "project.html";
+        location.href = "index.html";
     }catch(error){
         console.error("저장실패:",error)
         alert("이미지 용량이 너무 커서 저장할 수 없습니다.")
@@ -88,7 +88,7 @@ buttonTag.addEventListener(`click`, () => {
     const backBtn=document.querySelector(".container__header__button")
     if(backBtn){
         backBtn.addEventListener("click",()=>{
-            location.href="./index.html"
+            location.href="index.html"
         })
     }
 }

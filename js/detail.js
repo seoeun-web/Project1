@@ -66,7 +66,7 @@ updateBtn.addEventListener("click",()=>{
 
     localStorage.setItem("posts",JSON.stringify(posts))
     window.alert("수정이 완료되었습니다.")
-    location.href="project.html"
+    location.href="index.html"
 })
 
 deleteBtn.addEventListener("click",()=>{
@@ -76,13 +76,13 @@ deleteBtn.addEventListener("click",()=>{
     posts.splice(selectedindex,1)
     localStorage.setItem("posts",JSON.stringify(posts))
     window.alert("삭제가 완료되었습니다.")
-    location.href="project.html" 
+    location.href="index.html" 
 })
 
 // 뒤로가기
 const backBtn=document.querySelector(".container__header__button")
 if(backBtn){
     backBtn.addEventListener("click",()=>{
-        location.href="./index.html"
+        location.href="index.html"
     })
 }
