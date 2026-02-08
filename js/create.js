@@ -88,7 +88,7 @@ buttonTag.addEventListener(`click`, () => {
     const backBtn=document.querySelector(".container__header__button")
     if(backBtn){
         backBtn.addEventListener("click",()=>{
-            location.href="project.html"
+            location.href="./project.html"
         })
     }
 }
